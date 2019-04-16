@@ -1,15 +1,15 @@
 public class Vector {
     private double x_1, x_2;
-    private Vector normalized;
     private double length;
 
 
     public Vector(double x_1, double x_2) {
         this.x_1 = x_1;
         this.x_2 = x_2;
-        this.length = norm(this);
-        this.normalized = normalize(this);
+        this.length = Math.sqrt(this.get_x_1() * this.get_x_1() + this.get_x_2() * this.get_x_2());
     }
+
+    // getters
 
     public double get_x_1() {
         return this.x_1;
@@ -23,9 +23,8 @@ public class Vector {
         return this.length;
     }
 
-    public Vector get_normalized_vector() {
-        return this.normalized;
-    }
+
+    // Operations
 
     public Vector add(Vector v) {
         double new_x_1 = get_x_1() + v.get_x_1();
@@ -34,21 +33,18 @@ public class Vector {
     }
 
     public Vector subtract(Vector v) {
-        double new_x_1 = this.vector.get_x_1() - v.get_x_1();
-        double new_x_2 = this.vector.get_x_2() - v.get_x_2();
+        double new_x_1 = this.get_x_1() - v.get_x_1();
+        double new_x_2 = this.get_x_2() - v.get_x_2();
         return new Vector(new_x_1, new_x_2);
     }
 
-
-    // static functions
-
-    private static double norm(Vector v) {
-        return Math.sqrt(v.get_x_1() * v.get_x_1() + v.get_x_2() * v.get_x_2());
+    public Vector scale(double scalar) {
+        return new Vector(this.get_x_1() * scalar, this.get_x_2() * scalar);
     }
 
-    private static Vector normalize(Vector v) {
-        double new_x_1 = v.get_x_1() / v.norm;
-        double new_x_2 = v.get_x_2() / v.norm;
+    public Vector get_normalized_vector() {
+        double new_x_1 = this.get_x_1() / this.get_length();
+        double new_x_2 = this.get_x_2() / this.get_length();
         return new Vector(new_x_1, new_x_2);
     }
 }
