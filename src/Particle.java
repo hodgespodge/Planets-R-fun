@@ -10,23 +10,40 @@ public class Particle extends Universe {
     private Vector new_velocity;
     private Location new_location;
 
+    public double get_mass() {
+        return mass;
+    }
+
+    public Location get_location() {
+        return location;
+    }
+
+    public Vector get_velocity() {
+        return velocity;
+    }
+
+    public Vector get_net_force() {
+        return net_force;
+    }
+
+    public Vector get_new_net_force() {
+        return new_net_force;
+    }
+
+    public Vector get_new_velocity() {
+        return new_velocity;
+    }
+
+    public Location get_new_location() {
+        return new_location;
+    }
+
     public Particle(double mass, Location location, Vector velocity) {
         this.mass = mass;
         this.velocity = velocity;
         this.location = location;
-
-
         this.net_force = null; // function to  calculate net force goes here
-
     }
-
-
-    // getters
-
-    public Location get_location() {
-        return this.location;
-    }
-
 
     // operations
 
@@ -35,9 +52,9 @@ public class Particle extends Universe {
     }
 
     public Vector get_force_between_particle(Particle p) {
-        final double G = 0.0000000000667408; // univeral gravitational constant
         Vector r_unit_vector = this.get_direction_to_particle(p);
-        Double temp = ((-1) * G * this.mass * p.mass) / (1);
+        Double temp = ((-1) * get_universal_gravitational_constant() * this.mass * p.mass)
+                / (this.get_distance_to_particle(p) * this.get_distance_to_particle(p));
         Vector force_vector = r_unit_vector.scale(temp);
         System.out.println(force_vector.get_x_1() + " " + force_vector.get_x_2());
         return force_vector;
