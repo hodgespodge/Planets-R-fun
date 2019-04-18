@@ -1,4 +1,5 @@
 public class Vector {
+
     private double x_1, x_2;
     private double length;
 
@@ -9,7 +10,9 @@ public class Vector {
         this.length = Math.sqrt(this.get_x_1() * this.get_x_1() + this.get_x_2() * this.get_x_2());
     }
 
-    // getters
+    public String toString() {
+        return "x_1 = " + this.get_x_1() + " x_2 = " + this.get_x_2() + ".";
+    }
 
     public double get_x_1() {
         return this.x_1;
@@ -22,9 +25,6 @@ public class Vector {
     public double get_length() {
         return this.length;
     }
-
-
-    // Operations
 
     public Vector add(Vector v) {
         double new_x_1 = get_x_1() + v.get_x_1();

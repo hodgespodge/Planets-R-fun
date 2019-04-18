@@ -7,6 +7,10 @@ public class Location {
         this.x_2 = y;
     }
 
+    public String toString() {
+        return "x_1 = " + this.get_x() + " y = " + this.get_y() + ".";
+    }
+
     public double get_x() {
         return this.x_1;
     }
@@ -21,6 +25,11 @@ public class Location {
         return Math.sqrt(n.get_x() * n.get_x() + n.get_y() * n.get_y());
     }
 
+    public Location add(Location l) {
+        double new_x_1 = get_x_1() + l.get_x_1();
+        double new_x_2 = get_x_2() + l.get_x_2();
+        return new Location(new_x_1, new_x_2);
+    }
 
     // static functions
 }
