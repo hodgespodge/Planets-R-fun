@@ -1,22 +1,66 @@
+/*
+    Description:
+        The idea behind this class is that all object that contains mass will be represented by an instance
+        of the Particle class... so you can think of Particle as being used to do the mathemical modeling 
+        of whats going on in the static Universe class. Objects such as asteroid, planets, or other blobs will
+        have their own classes that EXTEND the Particle class. 
+*/ 
+
 import java.util.List;
 
-public class Particle extends Universe {
+public class Particle extends Universe { // a particle is in the universe    // Constants
 
-    // Constants
-
-    private double mass;
+    private double mass; // object have mass, a location, and velocity. They also have a netforce 
     private Location location;
     private Vector velocity;
     private Vector net_force;
-    private Vector new_velocity;
+    
+    private Vector new_velocity; // these new things can be thought as temporary. When the universe calls to update where every
+                                 // particle is, this keeps track of the new info without impacting other objects that havent completed their cycle.
     private Location new_location;
 
     public Particle(double mass, Location location, Vector velocity) {
         this.mass = mass;
         this.velocity = velocity;
         this.location = location;
-        this.net_force = null; // function to  calculate net force goes here
+        
+        if (is_time_paused()) { // if the time in the universe is paused, well we should wait until its unpaused to update the net force on the particle    
+            this.net_force = null;
+        } else {
+            // if simulation is not paused then use the current conditions of the universe to update the particle.
+            this.set_net_force(this.get_net_force_on_particle());
+        }
     }
+    
+    public void set_net_force(Vector f) {
+        this.net_force = f;
+    }
+    
+    public void set_velocity(Vector v) {
+        this.velocity = new Velocity(v.get_x_1(), v.get_x_2());
+    }
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public double get_mass() {
         return mass;

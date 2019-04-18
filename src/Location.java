@@ -1,3 +1,7 @@
+/*
+    
+*/
+
 public class Location {
 
     private double x_1, x_2;
@@ -24,10 +28,16 @@ public class Location {
         Location n = new Location(this.get_x() - l.get_x(), this.get_y() - l.get_y());
         return Math.sqrt(n.get_x() * n.get_x() + n.get_y() * n.get_y());
     }
-
-    public Location add(Location l) {
-        double new_x = get_x() + l.get_x();
-        double new_y = get_y() + l.get_y();
-        return new Location(new_x, new_y);
+    
+    public Vector displacement_between_location(Location l) {
+        // inspired by a question that led to this internet post 
+        // https://math.stackexchange.com/questions/645672/what-is-the-difference-between-a-point-and-a-vector
+        /*
+            If given a point (-3, 5) and (4, 7), what is the vector that represents from point 1 to point 2?
+            4 - (-3), 7 - (5) -> (7, 2)
+        */
+        double disp_x = l.get_x() - this.get_x();
+        double disp_y = l.get_y() - this.get_y();
+        return new Vector(disp_x, disp_y);
     }
 }
