@@ -8,7 +8,6 @@ public class Particle extends Universe {
     private Location location;
     private Vector velocity;
     private Vector net_force;
-    private Vector new_net_force;
     private Vector new_velocity;
     private Location new_location;
 
@@ -33,10 +32,6 @@ public class Particle extends Universe {
 
     public Vector get_net_force() {
         return net_force;
-    }
-
-    public Vector get_new_net_force() {
-        return new_net_force;
     }
 
     public Vector get_new_velocity() {
@@ -66,7 +61,7 @@ public class Particle extends Universe {
         return r_vector.get_normalized_vector();
     }
 
-    public void update_net_force_on_particle() {
+    public Vector get_net_force_on_particle() {
         Vector vector_sum = new Vector(0, 0);
         List<Particle> particles = get_particles();
         for (Particle p : particles) {
@@ -75,7 +70,7 @@ public class Particle extends Universe {
             }
             vector_sum = vector_sum.add(this.get_force_between_particle(p));
         }
-        this.net_force = vector_sum;
+        return vector_sum;
     }
 
     public void calculate_next_update() {
@@ -93,6 +88,11 @@ public class Particle extends Universe {
     }
 
     public void set_next_update() {
-
+        this.velocity = this.new_velocity;
+        this.location = this.new_location;
+        this.new_velocity = null;
+        this.new_location = null;
+        this.net_force = get_net_force();
+        // do we need setters?
     }
 }

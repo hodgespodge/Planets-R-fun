@@ -26,10 +26,8 @@ public class Location {
     }
 
     public Location add(Location l) {
-        double new_x_1 = get_x_1() + l.get_x_1();
-        double new_x_2 = get_x_2() + l.get_x_2();
-        return new Location(new_x_1, new_x_2);
+        double new_x = get_x() + l.get_x();
+        double new_y = get_y() + l.get_y();
+        return new Location(new_x, new_y);
     }
-
-    // static functions
 }
