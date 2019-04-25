@@ -3,35 +3,41 @@ import java.util.List;
 
 public class Universe {
 
-    // constants
-    private static double G = 0.0000000000667408; // univeral gravitational constant
-    private static List<Planet> Planets;
-    private static List<Particle> updated_particles;
+    private static Universe instance; // so we believe there is only  one universe in existence sooooo
 
-    public Universe() {
-        Planets = new ArrayList<>();
-        updated_particles = new ArrayList<>();
+    // constants associated with the universe
+    private double G = 0.0000000000667408; // universal gravitational constant
+    private ArrayList<Particle> particles; // so this will store anything that extends the particle class. So...
 
+    private Universe() { // nobody should be able to create more universes
+        this.particles = new ArrayList<>();
     }
 
-    public void updatePlanets(){
-
-        //UPDATE Planets HERE
+    static { // constructs the instance at class loading time
+        instance = new Universe();
     }
 
-    public void addPlanet(Planet planet){
-        Planets.add(planet);
+    public static Universe getInstance() {
+        return instance;
     }
 
-    public boolean removePlanet(Planet planet){
-        return Planets.remove(planet);
+    // I'm thinking more of this. Here we take anything that is a particle list.
+    public void addParticle(Particle p) {
+        this.particles.add(p);
     }
 
-    public static double get_universal_gravitational_constant(){
-        return G;
+    // not sure exactly how the mechanics of this will work yet. Could it be that a reference to a particle is
+    // provided then the particle list is searched until it is found, then it is deleted.
+    public void removeParticle() {
+        System.out.println("Universe.removeParticle() HAS NOT BEEN IMPLEMENTED YET.");
     }
 
-    public static List<Planet> getPlanets() {
-        return Planets;
+    public double get_universal_gravitational_constant(){
+        return this.G;
     }
+
+    public ArrayList<Particle> getParticles() {
+        return this.particles;
+    }
+
 }
