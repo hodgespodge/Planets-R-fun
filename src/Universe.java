@@ -22,9 +22,8 @@ public class Universe {
     }
 
     // I'm thinking more of this. Here we take anything that is a particle list.
-    public void addParticle(double mass, Location location, Vector velocity) {
-        Particle p = new Particle(mass, location, velocity);
-        this.particles.add(p);
+    public void addParticle(Particle particle) {
+        this.particles.add(particle);
     }
 
     // not sure exactly how the mechanics of this will work yet. Could it be that a reference to a particle is

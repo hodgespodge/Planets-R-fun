@@ -6,9 +6,10 @@
         have their own classes that EXTEND the Particle class. 
 */ 
 
+import java.awt.*;
 import java.util.List;
 
-public class Particle {
+public class Particle implements NewtonianSolid{
 
     private double mass; // object have mass, a location, and velocity. They also have a netforce 
     private Location location;
@@ -81,6 +82,14 @@ public class Particle {
         double y_difference = p.get_location().get_y() - this.get_location().get_y();
         Vector r_vector = new Vector(x_difference, y_difference);
         return r_vector.get_normalized_vector();
+    }
+
+    public double getRadius() {
+        return mass;
+    }
+
+    public Color getColor() {
+        return Color.ORANGE;
     }
 
     /**

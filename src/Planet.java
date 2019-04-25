@@ -11,10 +11,12 @@ public class Planet extends Particle{
         this.radius = radius;
     }
 
+    @Override
     public double getRadius() {
         return radius;
     }
 
+    @Override
     public Color getColor() {
         return color;
     }

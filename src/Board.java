@@ -41,16 +41,16 @@ public class Board extends JPanel
 
     private void initBoard() {
 
-        setBackground(Color.BLACK);
+        setBackground(Color.WHITE);
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
         //loadImage();
 
         //planets = new ArrayList<>();
 
-        universe = new Universe();
+        universe = Universe.getInstance();
 
-        universe.addPlanet(new Planet(100, new Location(0, 0), new Vector(0, 0),20.0,Color.BLUE));
-        universe.addPlanet(new Planet(75, new Location(200, 200), new Vector(100, 0), 70.0,Color.MAGENTA));
+        universe.addParticle(new Planet(100, new Location(0, 0), new Vector(0, 0),20.0,Color.BLUE));
+        universe.addParticle(new Planet(75, new Location(200, 200), new Vector(100, 0), 70.0,Color.MAGENTA));
 
         x = INITIAL_X;
         y = INITIAL_Y;
@@ -75,10 +75,10 @@ public class Board extends JPanel
 
         //g.drawImage(star, x, y, this);
 
-        for(Planet planet : universe.getPlanets()){
+        for(Particle particle : universe.getInstance().getParticles()){
 
-            g.setColor(planet.getColor());
-            g.fillOval((int)planet.get_location().get_x(),(int)planet.get_location().get_y(),(int)planet.getRadius(),(int)planet.getRadius());
+            g.setColor(particle.getColor());
+            g.fillOval((int)particle.get_location().get_x(),(int)particle.get_location().get_y(),(int)particle.getRadius(),(int)particle.getRadius());
         }
 
         Toolkit.getDefaultToolkit().sync();
@@ -86,15 +86,8 @@ public class Board extends JPanel
 
     private void cycle() {
 
-        /**
-        x += 1;
-        y += 1;
+        //Update the list of particles here
 
-        if (y > B_HEIGHT) {
-
-            y = INITIAL_Y;
-            x = INITIAL_X;
-        }**/
     }
 
     @Override
