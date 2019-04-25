@@ -7,7 +7,7 @@ public class Point {
     
     private double x, y;
     
-    public Point(x, y) {
+    public Point(double x, double y) {
         this.x = x;
         this.y = y;
     }
@@ -25,7 +25,8 @@ public class Point {
     }
     
     public double get_distance_to_point(Point p) {
-        Point n = new Point(this.get_x() - p.get_x(), this.get_y() - p.get_y());
+        Point n = new Point(this.get_x() - p.get_x(), (this.get_y() - p.get_y()));
+
         return Math.sqrt(n.get_x() * n.get_x() + n.get_y() * n.get_y());
     }
     

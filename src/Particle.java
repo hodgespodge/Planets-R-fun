@@ -23,13 +23,13 @@ public class Particle extends Universe { // a particle is in the universe    // 
         this.mass = mass;
         this.velocity = velocity;
         this.location = location;
-        
+        /**
         if (is_time_paused()) { // if the time in the universe is paused, well we should wait until its unpaused to update the net force on the particle    
             this.net_force = null;
         } else {
             // if simulation is not paused then use the current conditions of the universe to update the particle.
             this.set_net_force(this.get_net_force_on_particle());
-        }
+        }**/
     }
     
     public void set_net_force(Vector f) {
@@ -39,28 +39,6 @@ public class Particle extends Universe { // a particle is in the universe    // 
     public void set_velocity(Vector v) {
         this.velocity = new Velocity(v.get_x_1(), v.get_x_2());
     }
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public double get_mass() {
         return mass;
@@ -105,6 +83,7 @@ public class Particle extends Universe { // a particle is in the universe    // 
         return r_vector.get_normalized_vector();
     }
 
+    /**
     public Vector get_net_force_on_particle() {
         Vector vector_sum = new Vector(0, 0);
         List<Particle> particles = get_particles();
@@ -115,8 +94,9 @@ public class Particle extends Universe { // a particle is in the universe    // 
             vector_sum = vector_sum.add(this.get_force_between_particle(p));
         }
         return vector_sum;
-    }
+    }**/
 
+    /**
     public void calculate_next_update() {
         // I really dislike this function, maybe should fix later.
         // we might be using more memory then we need...
@@ -129,7 +109,7 @@ public class Particle extends Universe { // a particle is in the universe    // 
                 temp_distance_travelled.get_x_2());
         this.new_location = this.get_location().add(distance_travelled);
         this.new_velocity = average_velocity; // these last tow lines hsould really use setters.
-    }
+    }**/
 
     public void set_next_update() {
         this.velocity = this.new_velocity;
