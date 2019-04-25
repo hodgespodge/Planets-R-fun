@@ -22,7 +22,8 @@ public class Universe {
     }
 
     // I'm thinking more of this. Here we take anything that is a particle list.
-    public void addParticle(Particle p) {
+    public void addParticle(double mass, Location location, Vector velocity) {
+        Particle p = new Particle(mass, location, velocity);
         this.particles.add(p);
     }
 

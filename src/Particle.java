@@ -8,13 +8,12 @@
 
 import java.util.List;
 
-public class Particle extends Universe { // a particle is in the universe    // Constants
+public class Particle {
 
     private double mass; // object have mass, a location, and velocity. They also have a netforce 
     private Location location;
     private Vector velocity;
     private Vector net_force;
-    
     private Vector new_velocity; // these new things can be thought as temporary. When the universe calls to update where every
                                  // particle is, this keeps track of the new info without impacting other objects that havent completed their cycle.
     private Location new_location;
@@ -69,8 +68,9 @@ public class Particle extends Universe { // a particle is in the universe    // 
     }
 
     public Vector get_force_between_particle(Particle p) {
+
         Vector r_unit_vector = this.get_direction_to_particle(p);
-        Double temp = ((-1) * get_universal_gravitational_constant() * this.mass * p.mass)
+        Double temp = ((-1) * Universe.getInstance().get_universal_gravitational_constant() * this.mass * p.mass)
                 / (this.get_distance_to_particle(p) * this.get_distance_to_particle(p));
         Vector force_vector = r_unit_vector.scale(temp);
         return force_vector;
