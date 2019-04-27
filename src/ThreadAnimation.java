@@ -1,7 +1,11 @@
-import java.awt.EventQueue;
-import javax.swing.JFrame;
+import java.awt.*;
+import javax.swing.*;
 
 public class ThreadAnimation extends JFrame {
+
+    private final int F_WIDTH = 950;
+    private final int F_HEIGHT = 600;
+    private final int F_DIVIDE = 400;
 
     public ThreadAnimation() {
 
