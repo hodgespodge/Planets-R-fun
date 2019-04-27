@@ -1,10 +1,10 @@
 public class Velocity extends Vector {
     
-    public Velocity(double x_1, double x_2) {
-        super(x_1, x_2);
+    public Velocity(double x, double y) {
+        super(x, y);
     }
     
-    public double get_velocity_in_x_direction() { // get_velocity_in_x_direction() ?????
+    public double get_velocity_in_x_direction() {
         return get_x();
     }
     

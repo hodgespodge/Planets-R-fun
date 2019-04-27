@@ -6,8 +6,7 @@ public class Universe {
     private static Universe instance; // so we believe there is only  one universe in existence sooooo
 
     // constants associated with the universe
-    //private double G = 0.0000000000667408; // universal gravitational constant
-    private double G = 0.00001;
+    private double G = 0.0000000000667408; // universal gravitational constant
     private ArrayList<Particle> particles; // so this will store anything that extends the particle class. So...
 
     private Universe() { // nobody should be able to create more universes
@@ -34,20 +33,10 @@ public class Universe {
     }
 
     public void update(){
-
-        //System.out.println("Updating Universe ");
-
-        for(Particle particle: particles){
+        for(Particle particle: this.particles)
             particle.calculate_next_update();
-        }
-
-        //System.out.println("Calling set_next_update ");
-
-        for(Particle particle: particles){
+        for(Particle particle: particles)
             particle.set_next_update();
-        }
-
-        //particles;
     }
 
     public double get_universal_gravitational_constant(){

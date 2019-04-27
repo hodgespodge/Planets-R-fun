@@ -9,7 +9,7 @@
 import java.awt.*;
 import java.util.List;
 
-public class Particle implements NewtonianSolid{
+public class Particle implements NewtonianSolid {
 
     private double mass; // object have mass, a location, and velocity. They also have a netforce 
     private Location location;
@@ -24,13 +24,7 @@ public class Particle implements NewtonianSolid{
         this.mass = mass;
         this.velocity = velocity;
         this.location = location;
-        /**
-        if (is_time_paused()) { // if the time in the universe is paused, well we should wait until its unpaused to update the net force on the particle    
-            this.net_force = null;
-        } else {
-            // if simulation is not paused then use the current conditions of the universe to update the particle.
-            this.set_net_force(this.get_net_force_on_particle());
-        }**/
+        this.net_force = get_net_force_on_particle();
     }
     
     public void set_net_force(Vector f) {
@@ -65,6 +59,22 @@ public class Particle implements NewtonianSolid{
         return new_location;
     }
 
+    public void set_velocity(Velocity v) {
+        this.velocity = v;
+    }
+
+    public void set_new_velocity(Velocity v) {
+        this.new_velocity = v;
+    }
+
+    public void set_location(Location l) {
+        this.location = l;
+    }
+
+    public void set_new_location(Location l) {
+        this.new_location = l;
+    }
+
     public double get_distance_to_particle(Particle p) {
         return this.get_location().get_distance_to_location(p.get_location());
     }
@@ -93,39 +103,25 @@ public class Particle implements NewtonianSolid{
         return Color.WHITE;
     }
 
-    public void updateParticle(){
-
-    }
-
     public Vector get_net_force_on_particle() {
         Vector vector_sum = new Vector(0, 0);
         List<Particle> particles = Universe.getInstance().getParticles();
         for (Particle p : particles) {
-            if (p == this) {
+            if (p == this)
                 continue;
-            }
             vector_sum = vector_sum.add(this.get_force_between_particle(p));
         }
         return vector_sum;
     }
 
-
     public void calculate_next_update() {
-        // I really dislike this function, maybe should fix later.
-        // we might be using more memory then we need...
-        double time_step = 1;//get_time_step();
-
+        double time_step = 1; // need something for this
         Vector acceleration = this.get_net_force_on_particle().scale(1.0/this.mass);
-        //velocity = this.velocity.add(Acceleration);
-
         Vector change_in_velocity = acceleration.scale(time_step / 2.0);
         Vector average_velocity = this.get_velocity().subtract(change_in_velocity);
-
-        Vector temp_distance_travelled = average_velocity.scale(time_step);
-        Location distance_travelled = new Location(temp_distance_travelled.get_x(),
-                temp_distance_travelled.get_y());
+        Vector distance_travelled = average_velocity.scale(time_step);
         this.new_location = this.get_location().add(distance_travelled);
-        this.new_velocity = average_velocity; // these last tow lines hsould really use setters.
+        this.new_velocity = average_velocity;
     }
 
     public void set_next_update() {
@@ -134,6 +130,5 @@ public class Particle implements NewtonianSolid{
         this.new_velocity = null;
         this.new_location = null;
         this.net_force = get_net_force();
-        // do we need setters?
     }
 }
