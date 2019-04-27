@@ -38,7 +38,7 @@ public class Particle implements NewtonianSolid{
     }
     
     public void set_velocity(Vector v) {
-        this.velocity = new Velocity(v.get_x_1(), v.get_x_2());
+        this.velocity = new Velocity(v.get_x(), v.get_y());
     }
 
     public double get_mass() {
@@ -93,10 +93,13 @@ public class Particle implements NewtonianSolid{
         return Color.WHITE;
     }
 
-    /**
+    public void updateParticle(){
+
+    }
+
     public Vector get_net_force_on_particle() {
         Vector vector_sum = new Vector(0, 0);
-        List<Particle> particles = get_particles();
+        List<Particle> particles = Universe.getInstance().getParticles();
         for (Particle p : particles) {
             if (p == this) {
                 continue;
@@ -104,22 +107,26 @@ public class Particle implements NewtonianSolid{
             vector_sum = vector_sum.add(this.get_force_between_particle(p));
         }
         return vector_sum;
-    }**/
+    }
 
-    /**
+
     public void calculate_next_update() {
         // I really dislike this function, maybe should fix later.
         // we might be using more memory then we need...
-        double time_step = get_time_step();
-        Vector acceleration = this.get_net_force().scale(this.mass);
+        double time_step = 1;//get_time_step();
+
+        Vector acceleration = this.get_net_force_on_particle().scale(1.0/this.mass);
+        //velocity = this.velocity.add(Acceleration);
+
         Vector change_in_velocity = acceleration.scale(time_step / 2.0);
         Vector average_velocity = this.get_velocity().subtract(change_in_velocity);
+
         Vector temp_distance_travelled = average_velocity.scale(time_step);
-        Location distance_travelled = new Location(temp_distance_travelled.get_x_1(),
-                temp_distance_travelled.get_x_2());
+        Location distance_travelled = new Location(temp_distance_travelled.get_x(),
+                temp_distance_travelled.get_y());
         this.new_location = this.get_location().add(distance_travelled);
         this.new_velocity = average_velocity; // these last tow lines hsould really use setters.
-    }**/
+    }
 
     public void set_next_update() {
         this.velocity = this.new_velocity;

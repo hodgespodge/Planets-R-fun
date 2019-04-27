@@ -34,11 +34,17 @@ public class Universe {
 
     public void update(){
 
+        //System.out.println("Updating Universe ");
+
         for(Particle particle: particles){
-            particle.get_net_force();
+            particle.calculate_next_update();
         }
 
+        //System.out.println("Calling set_next_update ");
 
+        for(Particle particle: particles){
+            particle.set_next_update();
+        }
 
         //particles;
     }

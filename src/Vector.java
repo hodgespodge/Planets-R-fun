@@ -7,26 +7,26 @@
 
 public class Vector {
 
-    private double x_1, x_2;
+    private double x, y;
     private double length; // so that it doesnt have to be computed continuously 
 
 
-    public Vector(double x_1, double x_2) {
-        this.x_1 = x_1;
-        this.x_2 = x_2; // once these are set, they cannot be changed. No setters.
-        this.length = Math.sqrt(this.get_x_1() * this.get_x_1() + this.get_x_2() * this.get_x_2()); // compute once since we are immutable. 
+    public Vector(double x, double y) {
+        this.x = x;
+        this.y = y; // once these are set, they cannot be changed. No setters.
+        this.length = Math.sqrt(this.get_x() * this.get_x() + this.get_y() * this.get_y()); // compute once since we are immutable.
     }
 
     public String toString() {
-        return "x_1 = " + this.get_x_1() + " x_2 = " + this.get_x_2() + ".";
+        return "x = " + this.get_x() + " y = " + this.get_y() + ".";
     }
 
-    public double get_x_1() {
-        return this.x_1;
+    public double get_x() {
+        return this.x;
     }
 
-    public double get_x_2() {
-        return this.x_2;
+    public double get_y() {
+        return this.y;
     }
 
     public double get_length() {
@@ -47,25 +47,25 @@ public class Vector {
     */
     
     public Vector add(Vector v) {
-        double new_x_1 = get_x_1() + v.get_x_1();
-        double new_x_2 = get_x_2() + v.get_x_2();
-        return new Vector(new_x_1, new_x_2);
+        double new_x = get_x() + v.get_x();
+        double new_y = get_y() + v.get_y();
+        return new Vector(new_x, new_y);
     }
 
     public Vector subtract(Vector v) {
-        double new_x_1 = this.get_x_1() - v.get_x_1();
-        double new_x_2 = this.get_x_2() - v.get_x_2();
-        return new Vector(new_x_1, new_x_2);
+        double new_x = this.get_x() - v.get_x();
+        double new_y = this.get_y() - v.get_y();
+        return new Vector(new_x, new_y);
     }
 
     public Vector scale(double scalar) {
-        return new Vector(this.get_x_1() * scalar, this.get_x_2() * scalar);
+        return new Vector(this.get_x() * scalar, this.get_y() * scalar);
     }
 
     public Vector get_normalized_vector() {
-        double new_x_1 = this.get_x_1() / this.get_length();
-        double new_x_2 = this.get_x_2() / this.get_length();
-        return new Vector(new_x_1, new_x_2);
+        double new_x = this.get_x() / this.get_length();
+        double new_y = this.get_y() / this.get_length();
+        return new Vector(new_x, new_y);
     }
     
     // not implemented

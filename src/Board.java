@@ -50,7 +50,7 @@ public class Board extends JPanel
         universe = Universe.getInstance();
 
         universe.addParticle(new Planet(100, new Location(0, 0), new Vector(0, 0),20.0,Color.BLUE));
-        universe.addParticle(new Planet(75, new Location(200, 200), new Vector(100, 0), 70.0,Color.MAGENTA));
+        universe.addParticle(new Planet(75, new Location(200, 200), new Vector(0, 0), 70.0,Color.MAGENTA));
 
         x = INITIAL_X;
         y = INITIAL_Y;
@@ -72,6 +72,8 @@ public class Board extends JPanel
     }
 
     private void drawPlanets(Graphics g) {
+
+        //System.out.println("Drawing Planets ");
 
         //g.drawImage(star, x, y, this);
 

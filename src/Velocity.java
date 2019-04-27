@@ -5,11 +5,11 @@ public class Velocity extends Vector {
     }
     
     public double get_velocity_in_x_direction() { // get_velocity_in_x_direction() ?????
-        return get_x_1();
+        return get_x();
     }
     
     public double get_velocity_in_y_direction() {
-        return get_x_2();
+        return get_y();
     }
     
     public double get_speed() {
