@@ -32,6 +32,17 @@ public class Universe {
         System.out.println("Universe.removeParticle() HAS NOT BEEN IMPLEMENTED YET.");
     }
 
+    public void update(){
+
+        for(Particle particle: particles){
+            particle.get_net_force();
+        }
+
+
+
+        //particles;
+    }
+
     public double get_universal_gravitational_constant(){
         return this.G;
     }

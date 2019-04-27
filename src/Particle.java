@@ -15,6 +15,7 @@ public class Particle implements NewtonianSolid{
     private Location location;
     private Vector velocity;
     private Vector net_force;
+
     private Vector new_velocity; // these new things can be thought as temporary. When the universe calls to update where every
                                  // particle is, this keeps track of the new info without impacting other objects that havent completed their cycle.
     private Location new_location;
@@ -89,7 +90,7 @@ public class Particle implements NewtonianSolid{
     }
 
     public Color getColor() {
-        return Color.ORANGE;
+        return Color.WHITE;
     }
 
     /**

@@ -14,12 +14,12 @@ public class Board extends JPanel
         implements Runnable {
 
     private final int B_WIDTH = 950;
-    private final int B_HEIGHT = 950;
+    private final int B_HEIGHT = 600;
     private final int INITIAL_X = -40;
     private final int INITIAL_Y = -40;
     private final int DELAY = 25;
 
-    private Image star;
+    private Image Earth;
     private Thread animator;
     private int x, y;
 
@@ -34,7 +34,7 @@ public class Board extends JPanel
     private void loadImage() {
 
         ImageIcon ii = new ImageIcon("src/resources/earth.png");
-        star = ii.getImage();
+        Earth = ii.getImage();
 
 
     }
@@ -43,8 +43,8 @@ public class Board extends JPanel
 
         setBackground(Color.WHITE);
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
-        //loadImage();
 
+        //loadImage();
         //planets = new ArrayList<>();
 
         universe = Universe.getInstance();
@@ -86,6 +86,7 @@ public class Board extends JPanel
 
     private void cycle() {
 
+        Universe.getInstance().update();
         //Update the list of particles here
 
     }
