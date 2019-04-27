@@ -13,10 +13,6 @@ public class BottomPanel extends JPanel{
 
         JLabel label = new JLabel("PLAAAAAANETS ARE FUUUUUUUUUN");
 
-        while(true) {
-
-
-            add(label);
-        }
+        add(label);
     }
 }
