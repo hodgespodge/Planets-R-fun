@@ -6,7 +6,8 @@ public class Universe {
     private static Universe instance; // so we believe there is only  one universe in existence sooooo
 
     // constants associated with the universe
-    private double G = 0.0000000000667408; // universal gravitational constant
+    //private double G = 0.0000000000667408; // universal gravitational constant
+    private double G = 0.00001;
     private ArrayList<Particle> particles; // so this will store anything that extends the particle class. So...
 
     private Universe() { // nobody should be able to create more universes

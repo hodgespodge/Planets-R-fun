@@ -41,7 +41,7 @@ public class Board extends JPanel
 
     private void initBoard() {
 
-        setBackground(Color.WHITE);
+        setBackground(Color.BLACK);
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
 
         //loadImage();
@@ -49,8 +49,17 @@ public class Board extends JPanel
 
         universe = Universe.getInstance();
 
-        universe.addParticle(new Planet(100, new Location(0, 0), new Vector(0, 0),20.0,Color.BLUE));
-        universe.addParticle(new Planet(75, new Location(200, 200), new Vector(0, 0), 70.0,Color.MAGENTA));
+        //universe.addParticle(new Planet(1, new Location(0, 0), new Vector(1, 1),10.0,Color.BLUE));
+        //universe.addParticle(new Planet(1, new Location(20, 20), new Vector(1, 1), 10.0,Color.ORANGE));
+        //universe.addParticle(new Planet(1, new Location(700, 70), new Vector(1, 1), 10.0,Color.MAGENTA));
+        //universe.addParticle(new Planet(1, new Location(500, 200), new Vector(2, 1), 10.0,Color.RED));
+        universe.addParticle(new Planet(1000000, new Location(550, 300), new Vector(0.1, -0.3), 50.0,Color.YELLOW));
+        //universe.addParticle(new Planet(1, new Location(50, 50), new Vector(1, 1),10.0,Color.BLUE));
+        //universe.addParticle(new Planet(1, new Location(51, 49), new Vector(1, 1), 10.0,Color.ORANGE));
+        universe.addParticle(new Planet(1000000, new Location(500, 300), new Vector(0.1, 0.3), 50.0,Color.YELLOW));
+        //universe.addParticle(new Planet(1, new Location(57, 48), new Vector(2, 1), 10.0,Color.RED));
+        //universe.addParticle(new Planet(1, new Location(56, 45), new Vector(1, 1), 10.0,Color.GRAY));
+        //universe.addParticle(new Planet(1000000000, new Location(B_WIDTH/2, B_HEIGHT/2), new Vector(0, 0), 50.0,Color.YELLOW));
 
         x = INITIAL_X;
         y = INITIAL_Y;
