@@ -1,14 +1,9 @@
 import org.w3c.dom.css.RGBColor;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import javax.swing.*;
+import javax.swing.RootPaneContainer;
 
 public class Board extends JPanel
         implements Runnable {
@@ -42,7 +37,7 @@ public class Board extends JPanel
     private void initBoard() {
 
         setBackground(Color.WHITE);
-        setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
+        //setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
 
         //loadImage();
         //planets = new ArrayList<>();
