@@ -7,6 +7,7 @@
 */ 
 
 import java.awt.*;
+import java.awt.Point;
 import java.util.List;
 
 public class Particle implements NewtonianSolid {
@@ -131,4 +132,12 @@ public class Particle implements NewtonianSolid {
         this.new_location = null;
         this.net_force = get_net_force();
     }
+
+    public boolean contains(Point p) {
+        return (this.get_location().get_x() < p.getX() && this.get_location().get_y() < p.getY() &&
+                this.get_location().get_x() + this.getRadius() > p.getY() &&
+                this.get_location().get_y() + this.getRadius() > p.getY());
+
+    }
+
 }

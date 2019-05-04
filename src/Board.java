@@ -141,11 +141,15 @@ public class Board extends JPanel implements Runnable,MouseListener{
             Universe.getInstance().addParticle(new Planet(radius*radius*4*Math.PI, new Location(e.getX(), e.getY()), new Vector(0, 0), radius,Color.YELLOW));
         }
         else{
-            /**
-             *
-             * Method here which checks if the click is inside a planet and if so delete it
-             *
-             */
+
+            ArrayList<Particle> myParticles;
+            myParticles = Universe.getInstance().getParticles();
+
+            for (int i = 0; i < myParticles.size(); i++) {
+                if (myParticles.get(i).contains(e.getPoint())) {
+                    myParticles.remove(i);
+                }
+            }
         }
 
 

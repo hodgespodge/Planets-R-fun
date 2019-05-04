@@ -1,5 +1,6 @@
 import java.awt.*;
 
+
 public class Planet extends Particle{
 
     private double radius;
