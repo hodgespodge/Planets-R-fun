@@ -82,7 +82,7 @@ public class Particle implements NewtonianSolid {
     public Vector get_force_between_particle(Particle p) {
 
         Vector r_unit_vector = this.get_direction_to_particle(p);
-        Double temp = ((-1) * Universe.getInstance().get_universal_gravitational_constant() * this.mass * p.mass)
+        Double temp = ((-1) * Universe.getInstance().getGravityScale() * this.mass * p.mass)
                 / (this.get_distance_to_particle(p) * this.get_distance_to_particle(p));
         Vector force_vector = r_unit_vector.scale(temp);
         return force_vector;

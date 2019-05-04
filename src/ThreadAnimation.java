@@ -63,7 +63,7 @@ public class ThreadAnimation extends JFrame {
         while(true){
             System.out.println("Planet size =  ");
             int radius = scan.nextInt();
-            Universe.getInstance().addParticle(new Planet(100000, new Location(rand.nextInt(600), rand.nextInt(600)), new Vector(0, 0), radius,Color.YELLOW));
+            Universe.getInstance().addParticle(new Planet(radius*radius*4*Math.PI, new Location(rand.nextInt(600), rand.nextInt(600)), new Vector(0, 0), radius,Color.YELLOW));
 
             System.out.println("Set Gravity?");
             if(!scan.next().equalsIgnoreCase("No")){
