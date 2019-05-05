@@ -135,7 +135,7 @@ public class Particle implements NewtonianSolid {
 
     public boolean contains(Point p) {
         return (this.get_location().get_x() < p.getX() && this.get_location().get_y() < p.getY() &&
-                this.get_location().get_x() + this.getRadius() > p.getY() &&
+                this.get_location().get_x() + this.getRadius() > p.getX() &&
                 this.get_location().get_y() + this.getRadius() > p.getY());
 
     }

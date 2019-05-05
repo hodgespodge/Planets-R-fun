@@ -141,7 +141,6 @@ public class Board extends JPanel implements Runnable,MouseListener{
             Universe.getInstance().addParticle(new Planet(radius*radius*4*Math.PI, new Location(e.getX(), e.getY()), new Vector(0, 0), radius,Color.YELLOW));
         }
         else{
-
             ArrayList<Particle> myParticles;
             myParticles = Universe.getInstance().getParticles();
 
