@@ -138,7 +138,7 @@ public class Board extends JPanel implements Runnable,MouseListener{
 
         if (SwingUtilities.isLeftMouseButton(e)){
             double radius = 50;
-            Universe.getInstance().addParticle(new Planet(radius*radius*4*Math.PI, new Location(e.getX(), e.getY()), new Vector(BottomPanel.getXValue(), BottomPanel.getYValue()), radius,Color.YELLOW));
+            Universe.getInstance().addParticle(new Planet(BottomPanel.getMass(), new Location(e.getX(), e.getY()), new Vector(BottomPanel.getXValue(), BottomPanel.getYValue()), BottomPanel.getRadius(),Color.YELLOW));
         }
         else{
             ArrayList<Particle> myParticles;
