@@ -1,10 +1,6 @@
 import org.w3c.dom.css.RGBColor;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -39,6 +35,7 @@ public class Board extends JPanel implements Runnable,MouseListener{
     }
 
     private void initBoard() {
+
 
         setBackground(Color.BLACK);
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
@@ -82,6 +79,7 @@ public class Board extends JPanel implements Runnable,MouseListener{
 
     private void cycle() {
 
+        Universe.getInstance().setGravityScale(BottomPanel.getGravity());
         Universe.getInstance().update();
         //Update the list of particles here
 

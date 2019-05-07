@@ -1,5 +1,6 @@
     
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 public class BottomPanel extends JPanel{
@@ -8,20 +9,29 @@ public class BottomPanel extends JPanel{
     static JSlider y;
     static JSlider mass;
     static JSlider radius;
+    static JSlider gravity;
 
-    BottomPanel() {
+    BottomPanel(LayoutManager layout) {
+        setLayout(layout);
+        repaint();
         run();
     }
 
     private void run() {
+
         setBackground(Color.LIGHT_GRAY);
 
-       // this.setLayout(BorderLayout);
+        JLabel xLabel = new JLabel("Velocity along x-axis:");
+        JLabel yLabel = new JLabel("Velocity along y-axis:");
+        JLabel massLabel = new JLabel("Mass:");
+        JLabel radiusLabel = new JLabel("Radius:");
+        JLabel gravityLabel = new JLabel("Gravity (automatically set to universal gravitational constant of 0.0000000000667408):");
 
         x = new JSlider(-10, 10, 0);
         y = new JSlider(-10, 10, 0);
         mass = new JSlider(0, 1000000, 500000);
         radius = new JSlider(0, 200, 100);
+        gravity = new JSlider(-5, 5, 0);
 
         x.setPaintTrack(true);
         x.setPaintTicks(true);
@@ -43,11 +53,22 @@ public class BottomPanel extends JPanel{
         radius.setPaintLabels(true);
         radius.setMajorTickSpacing(50);
         radius.setMinorTickSpacing(10);
+        gravity.setPaintTrack(true);
+        gravity.setPaintTicks(true);
+        gravity.setPaintLabels(true);
+        gravity.setMajorTickSpacing(5);
+        gravity.setMinorTickSpacing(1);
 
+        add(xLabel);
         add(x);
+        add(yLabel);
         add(y);
+        add(massLabel);
         add(mass);
+        add(radiusLabel);
         add(radius);
+        add(gravityLabel);
+        add(gravity);
     }
 
     public static double getXValue() {
@@ -64,5 +85,13 @@ public class BottomPanel extends JPanel{
 
     public static double getRadius() {
         return Double.valueOf(radius.getValue());
+    }
+
+    public static double getGravity() {
+        double grav = Double.valueOf(gravity.getValue());
+        if(grav == 0.0) {
+            return Universe.getInstance().getGravitationlConstant();
+        }
+        else return grav;
     }
 }

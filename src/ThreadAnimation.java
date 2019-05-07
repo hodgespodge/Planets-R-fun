@@ -21,7 +21,7 @@ public class ThreadAnimation extends JFrame {
         add(board);
 
         JSplitPane splitPane = new JSplitPane();
-        JPanel bottomPanel = new BottomPanel();
+        JPanel bottomPanel = new BottomPanel(new GridLayout(5,2));
 
         setPreferredSize(new Dimension(F_WIDTH, F_HEIGHT));
         getContentPane().setLayout(new GridLayout());
@@ -32,7 +32,8 @@ public class ThreadAnimation extends JFrame {
         splitPane.setTopComponent(board);
         splitPane.setBottomComponent(bottomPanel);
 
-        bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.X_AXIS));
+        //bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.X_AXIS));
+        //bottomPanel.setLayout(new BorderLayout());
 
         setResizable(false);
         pack();
