@@ -2,6 +2,7 @@
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.util.Hashtable;
 
 public class BottomPanel extends JPanel{
 
@@ -31,7 +32,23 @@ public class BottomPanel extends JPanel{
         y = new JSlider(-10, 10, 0);
         mass = new JSlider(0, 1000000, 500000);
         radius = new JSlider(0, 200, 100);
+
+
+        //Gravity slider is converted into a double so the effects can be visualised better.
         gravity = new JSlider(-5, 5, 0);
+        Hashtable labelTable = new Hashtable();
+        labelTable.put( 0, new JLabel("0.0") );
+        labelTable.put( -5, new JLabel("-0.05") );
+        labelTable.put( 5, new JLabel("0.05") );
+        labelTable.put(1, new JLabel("0.01") );
+        labelTable.put(2, new JLabel("0.02") );
+        labelTable.put(3, new JLabel("0.03") );
+        labelTable.put(4, new JLabel("0.04") );
+        labelTable.put(-1, new JLabel("-0.01") );
+        labelTable.put(-2, new JLabel("-0.02") );
+        labelTable.put(-3, new JLabel("-0.03") );
+        labelTable.put(-4, new JLabel("-0.04") );
+        gravity.setLabelTable(labelTable);
 
         x.setPaintTrack(true);
         x.setPaintTicks(true);
@@ -87,10 +104,42 @@ public class BottomPanel extends JPanel{
         return Double.valueOf(radius.getValue());
     }
 
+
+    //handles conversions of setting ints to doubles
     public static double getGravity() {
         double grav = Double.valueOf(gravity.getValue());
         if(grav == 0.0) {
             return Universe.getInstance().getGravitationlConstant();
+        }
+        if(grav == 1) {
+            return .01;
+        }
+        if(grav == 2) {
+            return .02;
+        }
+        if(grav == 3) {
+            return .03;
+        }
+        if(grav == 4) {
+            return .04;
+        }
+        if(grav == 5) {
+            return .05;
+        }
+        if(grav == -1) {
+            return -.01;
+        }
+        if(grav == -2) {
+            return -.02;
+        }
+        if(grav == -3) {
+            return -.03;
+        }
+        if(grav == -4) {
+            return -.04;
+        }
+        if(grav == -5) {
+            return -.05;
         }
         else return grav;
     }

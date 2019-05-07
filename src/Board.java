@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
+import java.util.Random;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.SwingUtilities;
@@ -135,8 +135,14 @@ public class Board extends JPanel implements Runnable,MouseListener{
         System.out.println("Mouse clicked");
 
         if (SwingUtilities.isLeftMouseButton(e)){
+
+            Random rand = new Random();
+            float r = rand.nextFloat();
+            float g = rand.nextFloat();
+            float b = rand.nextFloat();
+            Color randomColor = new Color(r, g, b);
             double radius = 50;
-            Universe.getInstance().addParticle(new Planet(BottomPanel.getMass(), new Location(e.getX(), e.getY()), new Vector(BottomPanel.getXValue(), BottomPanel.getYValue()), BottomPanel.getRadius(),Color.YELLOW));
+            Universe.getInstance().addParticle(new Planet(BottomPanel.getMass(), new Location(e.getX(), e.getY()), new Vector(BottomPanel.getXValue(), BottomPanel.getYValue()), BottomPanel.getRadius(),randomColor));
         }
         else{
             ArrayList<Particle> myParticles;
