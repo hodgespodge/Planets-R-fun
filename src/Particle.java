@@ -18,7 +18,7 @@ public class Particle implements NewtonianSolid {
     private Vector net_force;
 
     private Vector new_velocity; // these new things can be thought as temporary. When the universe calls to update where every
-                                 // particle is, this keeps track of the new info without impacting other objects that havent completed their cycle.
+                                 // particle is, this keeps track of the new info without impacting other objects that haven't completed their cycle.
     private Location new_location;
 
     public Particle(double mass, Location location, Vector velocity) {
@@ -80,8 +80,14 @@ public class Particle implements NewtonianSolid {
         return this.get_location().get_distance_to_location(p.get_location());
     }
 
+    /**
+     *
+     * Uses newton's universal law of gravitation to calculate gravitational force on a particle
+     *
+     * @param p
+     * @return
+     */
     public Vector get_force_between_particle(Particle p) {
-
         Vector r_unit_vector = this.get_direction_to_particle(p);
         Double temp = ((-1) * Universe.getInstance().getGravityScale() * this.mass * p.mass)
                 / (this.get_distance_to_particle(p) * this.get_distance_to_particle(p));
@@ -89,6 +95,11 @@ public class Particle implements NewtonianSolid {
         return force_vector;
     }
 
+    /**
+     *
+     * @param p
+     * @return
+     */
     public Vector get_direction_to_particle(Particle p) {
         double x_difference = p.get_location().get_x() - this.get_location().get_x();
         double y_difference = p.get_location().get_y() - this.get_location().get_y();
@@ -104,6 +115,10 @@ public class Particle implements NewtonianSolid {
         return Color.WHITE;
     }
 
+    /**
+     * sum the force vectors acting on a particle
+     * @return
+     */
     public Vector get_net_force_on_particle() {
         Vector vector_sum = new Vector(0, 0);
         List<Particle> particles = Universe.getInstance().getParticles();
@@ -115,16 +130,21 @@ public class Particle implements NewtonianSolid {
         return vector_sum;
     }
 
+    /**
+     * Calculate and set the new location and new velocity of the particle.
+     */
     public void calculate_next_update() {
-        double time_step = 1; // need something for this
         Vector acceleration = this.get_net_force_on_particle().scale(1.0/this.mass);
-        Vector change_in_velocity = acceleration.scale(time_step / 2.0);
+        Vector change_in_velocity = acceleration.scale( 0.5);
         Vector average_velocity = this.get_velocity().subtract(change_in_velocity);
-        Vector distance_travelled = average_velocity.scale(time_step);
+        Vector distance_travelled = average_velocity.scale(1);
         this.new_location = this.get_location().add(distance_travelled);
         this.new_velocity = average_velocity;
     }
 
+    /**
+     * Change the old position and velocity values to the new values
+     */
     public void set_next_update() {
         this.velocity = this.new_velocity;
         this.location = this.new_location;
@@ -133,6 +153,12 @@ public class Particle implements NewtonianSolid {
         this.net_force = get_net_force();
     }
 
+    /**
+     * checks to see if the point is inside the radius of the particle
+     *
+     * @param p
+     * @return
+     */
     public boolean contains(Point p) {
         return (this.get_location().get_x() < p.getX() && this.get_location().get_y() < p.getY() &&
                 this.get_location().get_x() + this.getRadius() > p.getX() &&
