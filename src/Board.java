@@ -34,6 +34,7 @@ public class Board extends JPanel implements Runnable,MouseListener{
 
     }
 
+    //initializes aspects of the GUI to set default values and enables mouse interaction
     private void initBoard() {
 
 
@@ -66,6 +67,7 @@ public class Board extends JPanel implements Runnable,MouseListener{
         drawPlanets(g);
     }
 
+    //handles the graphical aspects of the planets in the particle array list located in the Universe class
     private void drawPlanets(Graphics g) {
 
         for(Particle particle : universe.getInstance().getParticles()){
@@ -131,16 +133,22 @@ public class Board extends JPanel implements Runnable,MouseListener{
     public void mouseExited(MouseEvent e) { }
 
     @Override
+    /**
+     * handles our mouse functionality where left clicking will add a new planet object based off of user set slider statistics
+     * as well as functionality for removing objects in the screen by right clicking on them
+     */
     public void mouseClicked(MouseEvent e) {
         System.out.println("Mouse clicked");
 
         if (SwingUtilities.isLeftMouseButton(e)){
 
+            //these calls to create a random color could be pulled into their own method for more readable code
             Random rand = new Random();
             float r = rand.nextFloat();
             float g = rand.nextFloat();
             float b = rand.nextFloat();
             Color randomColor = new Color(r, g, b);
+
             double radius = 50;
             Universe.getInstance().addParticle(new Planet(BottomPanel.getMass(), new Location(e.getX(), e.getY()), new Vector(BottomPanel.getXValue(), BottomPanel.getYValue()), BottomPanel.getRadius(),randomColor));
         }
@@ -148,7 +156,7 @@ public class Board extends JPanel implements Runnable,MouseListener{
             ArrayList<Particle> myParticles;
             myParticles = Universe.getInstance().getParticles();
 
-            for (int i = 0; i < myParticles.size(); i++) {
+            for (int i = 0; i < myParticles.size(); i++) { //for each loop can't be used with a remove call, which is why a normal for loop is used
                 if (myParticles.get(i).contains(e.getPoint())) {
                     myParticles.remove(i);
                 }

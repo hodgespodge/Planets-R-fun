@@ -22,19 +22,25 @@ public class BottomPanel extends JPanel{
 
         setBackground(Color.LIGHT_GRAY);
 
+        //sliders do not have their own labels so JLabels are used
         JLabel xLabel = new JLabel("Velocity along x-axis:");
         JLabel yLabel = new JLabel("Velocity along y-axis:");
         JLabel massLabel = new JLabel("Mass:");
         JLabel radiusLabel = new JLabel("Radius:");
         JLabel gravityLabel = new JLabel("Gravity (automatically set to universal gravitational constant of 0.0000000000667408):");
 
+        //JSliders take a minimum value, max value, and the default value (ONLY INTS BY DEFAULT)
         x = new JSlider(-10, 10, 0);
         y = new JSlider(-10, 10, 0);
         mass = new JSlider(0, 1000000, 500000);
         radius = new JSlider(0, 200, 100);
 
 
-        //Gravity slider is converted into a double so the effects can be visualised better.
+        /**
+         * Gravity slider is converted into a double so the effects can be visualised better.
+         * labelTable handles displaying the double value instead of the normal int. Only for visualizing
+         * these calls do not actually change the value of gravity
+         */
         gravity = new JSlider(-5, 5, 0);
         Hashtable labelTable = new Hashtable();
         labelTable.put( 0, new JLabel("0.0") );
@@ -105,7 +111,8 @@ public class BottomPanel extends JPanel{
     }
 
 
-    //handles conversions of setting ints to doubles
+    //handles conversions of setting ints to doubles. Could be streamlined into a much better method to avoid repetition
+    //of code
     public static double getGravity() {
         double grav = Double.valueOf(gravity.getValue());
         if(grav == 0.0) {
